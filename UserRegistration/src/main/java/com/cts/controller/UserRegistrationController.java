@@ -73,6 +73,11 @@ public class UserRegistrationController {
      * @return Confirmation message after updating.
      * @throws UserNotFoundException if the user is not found.
      */
+    
+    @GetMapping("/fetch-by-email/{email}")
+    public UserRegistration getUserByEmail(@PathVariable String email) throws UserNotFoundException {
+    	return userService.getUserByEmail(email);
+    }
 
     @PutMapping("/update/{userId}")
     public String updateUser(@PathVariable int userId, @RequestBody UserRegistration updatedUser) throws UserNotFoundException {

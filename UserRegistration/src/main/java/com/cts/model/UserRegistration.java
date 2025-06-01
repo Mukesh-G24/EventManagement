@@ -39,5 +39,8 @@ public class UserRegistration {
 	@NotBlank(message = "User contact number cannot be blank")
 	@Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "User contact number should be valid")
 	private String userContactNumber;
+	
+	@NotBlank(message = "Role cannot be blank")
+	private String role;
 
 }

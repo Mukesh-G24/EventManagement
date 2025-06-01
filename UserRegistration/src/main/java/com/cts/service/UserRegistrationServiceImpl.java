@@ -37,6 +37,19 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
             throw new UserNotFoundException("User not found with id : "+id+". Enter a valid user id..");
         }
     }
+    
+    
+    @Override
+    public UserRegistration getUserByEmail(String email) throws UserNotFoundException {
+        logger.info("Fetching user with email: {}", email);
+        UserRegistration user = repository.findByUserEmail(email);
+        if (user!=null) {
+            logger.info("User found with email: {}", email);
+            return user;
+        } else {
+            throw new UserNotFoundException("User not found with email : "+email+". Enter a valid email..");
+        }
+    }
 
     @Override
     public UserRegistration saveUser(UserRegistration user) {

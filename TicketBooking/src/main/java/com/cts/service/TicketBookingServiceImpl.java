@@ -115,5 +115,6 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 		javaMailSender.send(message);
 		return "Mail sent successfully...";
 	}
+	
 
 }

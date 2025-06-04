@@ -28,11 +28,12 @@ public class UserService {
 		}
 	}
 
-	public String getRoles(String username) {
+	public UserInfo getRoles(String username) {
 		UserInfo obj2 = repository.findByName(username).orElse(null);
 		if (obj2 != null) {
-			return obj2.getRoles();
+			
+			return obj2;
 		}
-		return "Not Found";
+		return null;
 	}
 }

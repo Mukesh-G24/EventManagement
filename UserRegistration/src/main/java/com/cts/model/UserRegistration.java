@@ -25,7 +25,7 @@ public class UserRegistration {
 	private int id;
 
 	@NotBlank(message = "User name cannot be blank")
-	@Size(min = 4, max =20 , message = "User name must be between 4 and 20 characters")
+	@Size(min = 2, max =30 , message = "User name must be between 3 and 30 characters")
 	private String userName;
 
 	@NotBlank(message = "User email cannot be blank")
@@ -33,7 +33,7 @@ public class UserRegistration {
 	private String userEmail;
 
 	@NotBlank(message = "User password cannot be blank")
-	@Size(min = 8, message = "User password must be at least 8 characters long")
+	@Size(min = 3, message = "User password must be at least 3 characters long")
 	private String userPassword;
 
 	@NotBlank(message = "User contact number cannot be blank")

@@ -58,7 +58,7 @@ public class AuthController {
     }
     
     @GetMapping("/getroles/{username}")		//http://localhost:9090/auth/getroles/{username}
-    public String getRoles(@PathVariable String username)
+    public UserInfo getRoles(@PathVariable String username)
     {
     	return service.getRoles(username);
     }

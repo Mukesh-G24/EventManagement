@@ -17,9 +17,9 @@ public interface EventManagementService {
 
 	public abstract String deleteEventById(int id) throws EventNotFoundException;
 	
-	public void decreaseTicketCount(int id);
+	public void decreaseTicketCount(int id) throws EventNotFoundException;
 	
-	public void increaseTicketCount(int id);
+	public void increaseTicketCount(int id) throws EventNotFoundException;
 	
 	public abstract List<EventManagement> getAllEvents();
 

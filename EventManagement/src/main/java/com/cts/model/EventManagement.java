@@ -43,6 +43,10 @@ public class EventManagement {
 
 	@Min(value = 1, message = "Ticket count must be at least 1")
 	private int ticketCount;
+	
+	@NotNull(message = "Ticke price is mandatory")
+	@Min(value = 100, message = "Ticket price should be minimum of 100")
+	private double ticketPrice;
 
 	@PrePersist
 	@PreUpdate

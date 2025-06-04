@@ -111,20 +111,22 @@ public class EventManagementController {
 	/**
      * Decreases ticket count for an event.
      * @param eventId ID of the event.
+	 * @throws EventNotFoundException 
      */
 	
 	@PostMapping("decreaseTicketCount/{eventId}")
-	public void decreaseTicketCount(@PathVariable int eventId) {
+	public void decreaseTicketCount(@PathVariable int eventId) throws EventNotFoundException {
 		service.decreaseTicketCount(eventId);
 	}
 
 	/**
      * Increases ticket count for an event.
      * @param eventId ID of the event.
+	 * @throws EventNotFoundException 
      */
 	
 	@PostMapping("increaseTicketCount/{eventId}")
-	public void increaseTicketCount(@PathVariable int eventId) {
+	public void increaseTicketCount(@PathVariable int eventId) throws EventNotFoundException {
 		service.increaseTicketCount(eventId);
 	}
 

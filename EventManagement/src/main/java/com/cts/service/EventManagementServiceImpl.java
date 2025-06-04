@@ -59,6 +59,8 @@ public class EventManagementServiceImpl implements EventManagementService {
 		existingEvent.setEventLocation(event.getEventLocation());
 		existingEvent.setEventDate(event.getEventDate());
 		existingEvent.setEventOrganizerId(event.getEventOrganizerId());
+		existingEvent.setTicketCount(event.getTicketCount());
+		existingEvent.setTicketPrice(event.getTicketPrice());
 		saveEvent(existingEvent);
 		return existingEvent;
 	}
@@ -89,10 +91,10 @@ public class EventManagementServiceImpl implements EventManagementService {
 	}
 
 	@Override
-	public void decreaseTicketCount(int eventId) {
+	public void decreaseTicketCount(int eventId) throws EventNotFoundException {
 		logger.info("Decreasing ticket count for event ID: {}", eventId);
 		EventManagement event = repository.findById(eventId)
-				.orElseThrow(() -> new RuntimeException("Event not found with Id: " + eventId));
+				.orElseThrow(() -> new EventNotFoundException("Event not found with Id: " + eventId));
 		int currentCount = event.getTicketCount();
 		if (currentCount > 0) {
 			event.setTicketCount(currentCount - 1);
@@ -105,10 +107,10 @@ public class EventManagementServiceImpl implements EventManagementService {
 	}
 
 	@Override
-	public void increaseTicketCount(int eventId) {
+	public void increaseTicketCount(int eventId) throws EventNotFoundException {
 		logger.info("Increasing ticket count for event ID: {}", eventId);
 		EventManagement event = repository.findById(eventId)
-				.orElseThrow(() -> new RuntimeException("Event not found with Id: " + eventId));
+				.orElseThrow(() -> new EventNotFoundException("Event not found with Id: " + eventId));
 		int currentCount = event.getTicketCount();
 		event.setTicketCount(currentCount + 1);
 		repository.save(event);

@@ -3,6 +3,8 @@ package com.cts.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,10 +29,14 @@ public class TicketBooking {
 	@NotNull(message = "User ID cannot be null")
 	private int userId;
 	private LocalDateTime ticketBookingDate;
+	
+	@Enumerated(EnumType.STRING)
 	private Status ticketStatus;
+	
 	@NotNull
 	@Min(value = 1, message = "Minimum ticket count should be 1")
 	private int noOfTickets;
+	
 	public enum Status {
 		BOOKED, CANCELLED;
 	}

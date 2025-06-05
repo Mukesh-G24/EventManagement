@@ -50,12 +50,14 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 		ticket.setTicketBookingDate(LocalDateTime.now());
 		ticket.setTicketStatus(TicketBooking.Status.BOOKED);
 		TicketBooking bookedTicket = repository.save(ticket);
+		System.out.println("Ticket Booked ===== "+bookedTicket.toString());
 		String subject = "Ticket booking status";
 		String message = "Congratulations! Your ticket has been booked successfully."+ "\n" +"Ticket Details:\n" +
 	               "User ID : " + bookedTicket.getUserId() + "\n" +
 	               "Ticket ID : " + bookedTicket.getTicketId() + "\n" +
 	               "Event ID : " + bookedTicket.getEventId() + "\n" +
 	               "Event Name : " + event.getEventName().toUpperCase() + "\n" +
+	               "Total no of tickets : " + ticket.getNoOfTickets() + "\n" +
 	               "Event Locatoin : "+ event.getEventLocation().toUpperCase() + "\n" +
 	               "Event Date : "+ event.getEventDate();
 		sendMail(email,subject,message);

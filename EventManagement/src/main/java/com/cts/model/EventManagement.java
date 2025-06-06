@@ -34,7 +34,7 @@ public class EventManagement {
 	@NotBlank(message = "Event location is mandatory")
 	private String eventLocation;
 
-	@Future(message = "Event date must be in the future")
+//	@Future(message = "Event date must be in the future")
 	@NotNull(message = "Event date is mandatory")
 	private Date eventDate;
 

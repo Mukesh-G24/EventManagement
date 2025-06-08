@@ -13,9 +13,9 @@ public interface EventManagementClient {
 	@GetMapping("/fetch-by-id/{eventId}")
 	public EventManagement getEventById(@PathVariable int eventId);
 	
-	@PostMapping("increaseTicketCount/{eventId}")
-	public void increaseTicketCount(@PathVariable int eventId);
+	@PostMapping("increaseTicketCount/{eventId}/{ticketCount}")
+	public void increaseTicketCount(@PathVariable int eventId,@PathVariable int ticketCount);
 	
-	@PostMapping("decreaseTicketCount/{eventId}")
-	public void decreaseTicketCount(@PathVariable int eventId);
+	@PostMapping("decreaseTicketCount/{eventId}/{ticketCount}")
+	public void decreaseTicketCount(@PathVariable int eventId,@PathVariable int ticketCount);
 }

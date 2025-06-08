@@ -17,9 +17,9 @@ public interface EventManagementService {
 
 	public abstract String deleteEventById(int id) throws EventNotFoundException;
 	
-	public void decreaseTicketCount(int id) throws EventNotFoundException;
+	public void decreaseTicketCount(int id,int tickectCount) throws EventNotFoundException;
 	
-	public void increaseTicketCount(int id) throws EventNotFoundException;
+	public void increaseTicketCount(int id, int ticketCount) throws EventNotFoundException;
 	
 	public abstract List<EventManagement> getAllEvents();
 
@@ -28,5 +28,7 @@ public interface EventManagementService {
 	public abstract List<EventManagement> getEventByLocation(String location) throws EventNotFoundException;
 	
 	public abstract List<EventManagement> getEventByDate(Date date) throws EventNotFoundException;
+	
+	public abstract List<EventManagement> getEventByOrganizerId(int organizerId) throws EventNotFoundException;
 	
 }

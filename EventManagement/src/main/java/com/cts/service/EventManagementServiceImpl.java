@@ -79,25 +79,15 @@ public class EventManagementServiceImpl implements EventManagementService {
 		return repository.findAll();
 	}
 
-	@Override
-	public List<EventManagement> getEventByCategory(String category) throws EventNotFoundException {
-		logger.info("Fetching events by category: {}", category);
-		List<EventManagement> events = repository.findByEventCategory(category);
-		if (events.isEmpty()) {
-			throw new EventNotFoundException(
-					"Event not found with category " + category + ". Enter a valid category..");
-		}
-		return events;
-	}
 
 	@Override
-	public void decreaseTicketCount(int eventId) throws EventNotFoundException {
+	public void decreaseTicketCount(int eventId, int ticketCount) throws EventNotFoundException {
 		logger.info("Decreasing ticket count for event ID: {}", eventId);
 		EventManagement event = repository.findById(eventId)
 				.orElseThrow(() -> new EventNotFoundException("Event not found with Id: " + eventId));
 		int currentCount = event.getTicketCount();
 		if (currentCount > 0) {
-			event.setTicketCount(currentCount - 1);
+			event.setTicketCount(currentCount - ticketCount);
 			repository.save(event);
 			logger.info("Ticket count decreased for event ID: {}", eventId);
 		} else {
@@ -107,14 +97,25 @@ public class EventManagementServiceImpl implements EventManagementService {
 	}
 
 	@Override
-	public void increaseTicketCount(int eventId) throws EventNotFoundException {
+	public void increaseTicketCount(int eventId,int ticketCount) throws EventNotFoundException {
 		logger.info("Increasing ticket count for event ID: {}", eventId);
 		EventManagement event = repository.findById(eventId)
 				.orElseThrow(() -> new EventNotFoundException("Event not found with Id: " + eventId));
 		int currentCount = event.getTicketCount();
-		event.setTicketCount(currentCount + 1);
+		event.setTicketCount(currentCount + ticketCount);
 		repository.save(event);
 		logger.info("Ticket count increased for event ID: {}", eventId);
+	}
+	
+	@Override
+	public List<EventManagement> getEventByCategory(String category) throws EventNotFoundException {
+		logger.info("Fetching events by category: {}", category);
+		List<EventManagement> events = repository.findByEventCategory(category);
+		if (events.isEmpty()) {
+			throw new EventNotFoundException(
+					"Event not found with category " + category + ". Enter a valid category..");
+		}
+		return events;
 	}
 
 	@Override
@@ -137,6 +138,15 @@ public class EventManagementServiceImpl implements EventManagementService {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String dateStr = formatter.format(date);
 			throw new EventNotFoundException("Event not found with date " + dateStr + ". Enter a valid date..");
+		}
+		return events;
+	}
+	
+	@Override
+	public List<EventManagement> getEventByOrganizerId(int organizerId) throws EventNotFoundException{
+		List<EventManagement> events = repository.findByEventOrganizerId(organizerId);
+		if(events.isEmpty()) {
+			throw new EventNotFoundException("Event not found with Organizer id "+organizerId);
 		}
 		return events;
 	}

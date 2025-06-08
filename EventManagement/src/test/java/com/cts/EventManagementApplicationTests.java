@@ -107,7 +107,7 @@ import com.cts.service.EventManagementServiceImpl;
     @Test
     void testDecreaseTicketCount_Success() throws EventNotFoundException {
         when(repository.findById(1)).thenReturn(Optional.of(event));
-        eventService.decreaseTicketCount(1);
+        eventService.decreaseTicketCount(1,2);
 
         assertEquals(99, event.getTicketCount());
         logger.info("Test: Ticket count decreased successfully");
@@ -116,7 +116,7 @@ import com.cts.service.EventManagementServiceImpl;
     @Test
     void testIncreaseTicketCount_Success() throws EventNotFoundException {
         when(repository.findById(1)).thenReturn(Optional.of(event));
-        eventService.increaseTicketCount(1);
+        eventService.increaseTicketCount(1,3);
 
         assertEquals(101, event.getTicketCount());
         logger.info("Test: Ticket count increased successfully");

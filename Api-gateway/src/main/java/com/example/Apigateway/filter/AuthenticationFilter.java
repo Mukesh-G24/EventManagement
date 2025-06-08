@@ -68,7 +68,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 					|| path.startsWith("/feedbackandrating") || (path.startsWith("/user")&& method.equalsIgnoreCase("GET"));
 				
 		}else if ("USER".equalsIgnoreCase(role)) {
-			return path.startsWith("/feedbackandrating") ||(path.startsWith("/user") && (method.equalsIgnoreCase("POST") || method.equalsIgnoreCase("PUT")))
+			return path.startsWith("/feedbackandrating") ||(path.startsWith("/user") && (method.equalsIgnoreCase("POST") || method.equalsIgnoreCase("PUT") || method.equalsIgnoreCase("GET")))
 					|| path.startsWith("/event") && method.equalsIgnoreCase("GET") || path.startsWith("/ticket");
 
 		}

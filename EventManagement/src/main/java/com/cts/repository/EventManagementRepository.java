@@ -13,4 +13,8 @@ public interface EventManagementRepository extends JpaRepository<EventManagement
 	List<EventManagement> findByEventDate(Date date);
 
 	List<EventManagement> findByEventLocation(String location);
+	
+	List<EventManagement> findByEventOrganizerId(int organizerId);
+
+	
 }

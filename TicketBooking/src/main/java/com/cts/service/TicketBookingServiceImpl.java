@@ -46,7 +46,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 		EventManagement event = eventClient.getEventById(ticket.getEventId());
 		UserRegistration user = userClient.getUserById(ticket.getUserId());
 		String email = user.getUserEmail();
-		eventClient.decreaseTicketCount(ticket.getEventId());
+		eventClient.decreaseTicketCount(ticket.getEventId(),ticket.getNoOfTickets());
 		ticket.setTicketBookingDate(LocalDateTime.now());
 		ticket.setTicketStatus(TicketBooking.Status.BOOKED);
 		TicketBooking bookedTicket = repository.save(ticket);
@@ -102,7 +102,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 		logger.info("Cancelling ticket with ID: {}", ticketId);
 		TicketBooking ticket = getTicketById(ticketId);
 		ticket.setTicketStatus(Status.CANCELLED);
-		eventClient.increaseTicketCount(ticket.getEventId());
+		eventClient.increaseTicketCount(ticket.getEventId(),ticket.getNoOfTickets());
 		repository.save(ticket);
 		logger.info("Ticket cancelled with ID: {}", ticketId);
 		return "Ticket cancelled";

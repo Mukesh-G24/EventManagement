@@ -109,7 +109,7 @@ import com.cts.service.EventManagementServiceImpl;
         when(repository.findById(1)).thenReturn(Optional.of(event));
         eventService.decreaseTicketCount(1,2);
 
-        assertEquals(99, event.getTicketCount());
+        assertEquals(98, event.getTicketCount());
         logger.info("Test: Ticket count decreased successfully");
     }
 
@@ -118,7 +118,7 @@ import com.cts.service.EventManagementServiceImpl;
         when(repository.findById(1)).thenReturn(Optional.of(event));
         eventService.increaseTicketCount(1,3);
 
-        assertEquals(101, event.getTicketCount());
+        assertEquals(103, event.getTicketCount());
         logger.info("Test: Ticket count increased successfully");
     }
 }

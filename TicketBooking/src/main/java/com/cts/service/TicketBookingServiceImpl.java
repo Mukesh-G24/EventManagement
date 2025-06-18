@@ -60,7 +60,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
 	               "Total no of tickets : " + ticket.getNoOfTickets() + "\n" +
 	               "Event Locatoin : "+ event.getEventLocation().toUpperCase() + "\n" +
 	               "Event Date : "+ event.getEventDate();
-		sendMail(email,subject,message);
+//		sendMail(email,subject,message);
 		logger.info("Ticket booked successfully for event ID: {} and user ID: {}", ticket.getEventId(),
 				ticket.getUserId());
 		return bookedTicket;
